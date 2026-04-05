@@ -5,13 +5,16 @@ import org.mockito.Mock;
 import userprofile.exception.ResourceNotFoundException;
 import userprofile.model.Profile;
 import userprofile.model.User;
+
 import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.junit.jupiter.MockitoExtension;
 import userprofile.repository.ProfileRepository;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 @ExtendWith(MockitoExtension.class)
 class ProfileServiceTest {

@@ -6,45 +6,44 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "profiles")
-
 public class Profile {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "Bio is required")
-    @Size(max = 500, message = "Bio can not exceed 500 characters")
+    @Size(max = 500, message = "Bio cannot exceed 500 characters")
     private String bio;
+
+    private String avatarUrl;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public Profile(String bio, User user) {
+    // Required by JPA — do not remove
+    public Profile() {}
+
+    public Profile(String bio, String avatarUrl, User user) {
         this.bio = bio;
-        this.user = user;
-            }
-
-            public Long getId() {return id;}
-
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
+        this.avatarUrl = avatarUrl;
         this.user = user;
     }
+
+    public Long getId() { return id; }
+
+    public String getBio() { return bio; }
+    public void setBio(String bio) { this.bio = bio; }
+
+    public String getAvatarUrl() { return avatarUrl; }
+    public void setAvatarUrl(String avatarUrl) { this.avatarUrl = avatarUrl; }
+
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 
     @Override
     public String toString() {
-        return "Profile{id=" + id + ", bio='" +bio + "'}";
+        return "Profile{id=" + id + ", bio='" + bio + "'}";
     }
 }
