@@ -53,7 +53,7 @@ class UserControllerTest {
 
         mockMvc.perform(get("/api/users/99"))
                 .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$.message").value("User Not found with id: 99"));
+                .andExpect(jsonPath("$.message").value("User Not Found with id: 99"));
     }
 
     @Test
@@ -108,7 +108,7 @@ class UserControllerTest {
         }
         @Test
                 void deleteUser_shouldReturn404_whenUserNotFound() throws Exception {
-            doThrow(new ResourceNotFoundException("User not found with id: 99"))
+            doThrow(new ResourceNotFoundException("User not Found with id: 99"))
                     .when(userService).deleteUser(99L);
 
             mockMvc.perform(delete("/api/users/99"))
